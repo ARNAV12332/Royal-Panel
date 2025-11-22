@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= name %> - Register</title>
+    <link href="../assets/tailwind.css" rel="stylesheet" />
+
+    <style>
+      .glass {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+      }
+    </style>
+  </head>
+
+  <body
+    class="h-full font-sans"
+    style="
+      background-image: url('https://4kwallpapers.com/images/wallpapers/minecraft-game-3840x2160-16737.jpg');
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    <div class="min-h-full flex items-center justify-center px-4 py-12">
+      <div class="glass w-full max-w-md p-8">
+        <div class="text-center">
+          <img
+            class="h-14 w-auto mx-auto rounded-xl"
+            src="<%= settings.logo %>"
+          />
+
+          <h2 class="mt-6 text-3xl font-semibold text-white">
+            Register an account
+          </h2>
+
+          <p class="mt-2 text-sm text-white/80">
+            Please enter your details below.
+          </p>
+        </div>
+
+        <form method="POST" action="/auth/register" class="mt-8 space-y-6">
+          <div>
+            <label class="block text-sm text-white/70">Username</label>
+            <input
+              placeholder="example"
+              id="username"
+              name="username"
+              required
+              autocomplete="username"
+              class="w-full mt-2 px-3 py-2 rounded-xl text-white bg-white/20 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm text-white/70">Email</label>
+            <input
+              placeholder="example@domain.com"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="w-full mt-2 px-3 py-2 rounded-xl text-white bg-white/20 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm text-white/70">Password</label>
+            <input
+              placeholder="********"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              required
+              class="w-full mt-2 px-3 py-2 rounded-xl text-white bg-white/20 focus:outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-2 mt-4 rounded-xl bg-white/80 text-neutral-900 font-medium hover:bg-white/90 transition"
+            style="border: 1px solid #000"
+          >
+            Register
+          </button>
+
+          <% if (req.query.err && req.query.err == "InvalidCredentials") { %>
+          <p class="text-amber-600 text-sm mt-2">
+            Invalid credentials. Please try again.
+          </p>
+          <% } %>
+        </form>
+
+        <p class="mt-4 text-center text-sm text-white/70">
+          Already have an account?
+          <a href="/login" class="hover:text-white">Sign in</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
